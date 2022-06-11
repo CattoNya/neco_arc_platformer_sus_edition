@@ -4,7 +4,7 @@ const UP = Vector2(0, -1)
 const gravity = 30
 const maxFallSpeed = 200
 const maxSpeed = 300
-const jumpForce = 600
+const jumpForce = 700
 const accel = 10
 
 var motion = Vector2()
@@ -40,6 +40,10 @@ func _physics_process(delta):
 	if is_on_floor():
 		if Input.is_action_pressed("jump"):
 			motion.y = -jumpForce 
+	
+	if is_on_floor():
+		if Input.is_action_pressed("crouch"):
+			$AnimationPlayer.play("crouch")
 	
 	if !is_on_floor():
 		if motion.y < 0:
